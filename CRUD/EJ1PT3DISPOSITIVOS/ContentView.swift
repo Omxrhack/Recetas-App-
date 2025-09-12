@@ -4,21 +4,26 @@
 //
 //  Created by Omar Bermejo Osuna on 11/09/25.
 //
+// ContentView.swift
 
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var app = AppNavigation()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+       
+        if app.currentFlowState == .onboarding {
+            OnboardingView()
+                .environmentObject(app)
+        } else {
+       
+            LoginPage()
+                .environmentObject(app)
         }
-        .padding()
     }
 }
-
 #Preview {
     ContentView()
+        .environmentObject(AppNavigation())
 }

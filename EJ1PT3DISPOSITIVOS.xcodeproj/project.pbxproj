@@ -11,9 +11,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6B4657772E733C970027AAB2 /* EJ1PT3DISPOSITIVOS */ = {
+		6B4657872E733E530027AAB2 /* CRUD */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = EJ1PT3DISPOSITIVOS;
+			path = CRUD;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		6B46576C2E733C970027AAB2 = {
 			isa = PBXGroup;
 			children = (
-				6B4657772E733C970027AAB2 /* EJ1PT3DISPOSITIVOS */,
+				6B4657872E733E530027AAB2 /* CRUD */,
 				6B4657762E733C970027AAB2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,7 +61,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				6B4657772E733C970027AAB2 /* EJ1PT3DISPOSITIVOS */,
+				6B4657872E733E530027AAB2 /* CRUD */,
 			);
 			name = EJ1PT3DISPOSITIVOS;
 			packageProductDependencies = (

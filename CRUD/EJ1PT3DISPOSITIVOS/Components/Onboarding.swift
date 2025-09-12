@@ -9,8 +9,7 @@ import Foundation
 
 struct Onboarding {
     var id = UUID()
-    var text: String
+    var title: String
     var image: String
-    var isActive: Bool
     var description: String
 }
