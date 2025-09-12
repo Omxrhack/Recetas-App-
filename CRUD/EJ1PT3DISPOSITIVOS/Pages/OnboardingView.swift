@@ -1,3 +1,12 @@
+//
+//  AppNavigation.swift
+//  EJ1PT3DISPOSITIVOS
+//
+//  Created by Omar Bermejo Osuna on 09/09/25.
+//
+
+
+
 import SwiftUI
 
 struct OnboardingView: View {
@@ -47,13 +56,14 @@ struct OnboardingView: View {
             }
             .ignoresSafeArea(.all)
             .tabViewStyle(PageTabViewStyle())
+          
             
             // Botón Start animado
             VStack {
                 Spacer()
                 Button(action: {
                     print("Se completo el OnBoarding!")
-                    app.completeOnboarding()  // Cambiamos el estado global
+                    self.app.completeOnboarding()  // Cambiamos el estado global
                 }) {
                     Image(systemName: "arrow.right")
                         .font(.title)
@@ -72,4 +82,5 @@ struct OnboardingView: View {
 }
 #Preview {
     OnboardingView()
+        .environmentObject(AppNavigation())
 }

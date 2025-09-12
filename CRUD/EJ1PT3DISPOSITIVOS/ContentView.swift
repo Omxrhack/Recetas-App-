@@ -7,22 +7,24 @@
 // ContentView.swift
 
 import SwiftUI
-
 struct ContentView: View {
     @StateObject private var app = AppNavigation()
     
     var body: some View {
-       
-        if app.currentFlowState == .onboarding {
+        switch app.currentFlowState {
+        case .onboarding:
             OnboardingView()
                 .environmentObject(app)
-        } else {
-       
+        case .login:
             LoginPage()
+                .environmentObject(app)
+        case .mainApp:
+            HomePage()
                 .environmentObject(app)
         }
     }
 }
+
 #Preview {
     ContentView()
         .environmentObject(AppNavigation())
