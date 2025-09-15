@@ -111,9 +111,3 @@ struct HomePage: View {
 }
 
 
-
-// MARK: - Preview
-#Preview {
-    HomePage()
-        .environmentObject(AppNavigation())
-}

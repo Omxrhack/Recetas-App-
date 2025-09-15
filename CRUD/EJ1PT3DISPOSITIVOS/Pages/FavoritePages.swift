@@ -3,6 +3,7 @@
 //  EJ1PT3DISPOSITIVOS
 //
 import SwiftUI
+
 struct FavoritesPage: View {
     @EnvironmentObject var app: AppNavigation
     @State private var recipes: [Recipe] = []
@@ -80,8 +81,9 @@ struct FavoritesPage: View {
     private func loadFavorites() {
         let friends = DatabaseManager.shared.fetchFriends(of: app.currentUser)
         let usersToShow = friends + [app.currentUser]
-        recipes = DatabaseManager.shared.fetchSavedRecipes(forUsers: usersToShow)
+        recipes = DatabaseManager.shared.fetchRecipes(ofUsers: usersToShow)
     }
+
 
     // MARK: - Guardar/Quitar favorito
     private func toggleSave(recipe: inout Recipe) {

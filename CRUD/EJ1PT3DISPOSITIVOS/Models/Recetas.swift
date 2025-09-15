@@ -1,9 +1,12 @@
+
+// Recetas.swift
+// EJ1PT3DISPOSITIVOS
 //
-//  Recetas.swift
-//  EJ1PT3DISPOSITIVOS
+// Created by Omar Bermejo Osuna on 14/09/25.
 //
-//  Created by Omar Bermejo Osuna on 14/09/25.
-//
+
+import Foundation
+
 struct Recipe: Identifiable, Equatable {
     let id: Int
     var user: String
@@ -12,8 +15,8 @@ struct Recipe: Identifiable, Equatable {
     var description: String
     var category: String
     var isPublic: Bool
-    var isLiked: Bool
-    var isSaved: Bool
+    var isLiked: Bool = false
+    var isSaved: Bool = false
     
-    // Conformidad automática de Equatable
+  
 }

@@ -54,31 +54,18 @@ struct RecipeDetailView: View {
                     .font(.body)
                     .foregroundColor(.secondary)
 
-                // Botones de acción
                 HStack(spacing: 20) {
+           
+                    // Botón eliminar
                     Button {
-                        recipe.isLiked.toggle()
-                        DatabaseManager.shared.updateReaction(
-                            id: Int64(recipe.id),
-                            isLiked: recipe.isLiked,
-                            isSaved: recipe.isSaved
-                        )
+                        deleteRecipe()
                     } label: {
-                        Image(systemName: recipe.isLiked ? "heart.fill" : "heart")
-                            .foregroundColor(recipe.isLiked ? .red : .gray)
+                        Image(systemName: "trash.circle.fill")
+                            .foregroundColor(.red)
+                            .font(.title)
                     }
 
-                    Button {
-                        recipe.isSaved.toggle()
-                        DatabaseManager.shared.updateReaction(
-                            id: Int64(recipe.id),
-                            isLiked: recipe.isLiked,
-                            isSaved: recipe.isSaved
-                        )
-                    } label: {
-                        Image(systemName: recipe.isSaved ? "book.closed.fill" : "book")
-                            .foregroundColor(recipe.isSaved ? .blue : .gray)
-                    }
+                
 
                     Spacer()
                     
@@ -92,11 +79,11 @@ struct RecipeDetailView: View {
                                 .font(.title2)
                         }
                         .sheet(isPresented: $showEditRecipe) {
-                            NewRecipeView(editRecipe: recipe) { updatedRecipe in
+                            NewRecipeView(onSave:  { updatedRecipe in
                                 // Actualizar en BD
                                 DatabaseManager.shared.updateRecipe(updatedRecipe)
                                 recipe = updatedRecipe
-                            }
+                            }, editRecipe: recipe)
                         }
                     }
                 }
@@ -107,5 +94,45 @@ struct RecipeDetailView: View {
         .navigationTitle("Detalle")
         .navigationBarTitleDisplayMode(.inline)
     }
+    private func toggleLike() {
+        recipe.isLiked.toggle()
+        DatabaseManager.shared.updateReaction(
+            id: Int64(recipe.id),
+            isLiked: recipe.isLiked,
+            isSaved: recipe.isSaved
+        )
+    }
+
+    private func toggleSave() {
+        recipe.isSaved.toggle()
+        DatabaseManager.shared.updateReaction(
+            id: Int64(recipe.id),
+            isLiked: recipe.isLiked,
+            isSaved: recipe.isSaved
+        )
+    }
+    private func deleteRecipe() {
+        DatabaseManager.shared.deleteRecipe(id: Int64(recipe.id))
+        // Cierra la vista de detalle después de eliminar
+        app.currentFlowState = .mainApp   // o navega hacia la lista de recetas
+    }
+
 }
 
+
+#Preview {
+    RecipeDetailView(
+        recipe: .constant(Recipe(
+            id: 1,
+            user: "Omar",
+            title: "Tacos al Pastor",
+            image: "Mexicana",
+            description: "Deliciosos tacos con piña y carne marinada.",
+            category: "tacos",
+            isPublic: true,
+            isLiked: false,
+            isSaved: false
+        ))
+    )
+    .environmentObject(AppNavigation())
+}
