@@ -20,6 +20,7 @@ class AppNavigation: ObservableObject {
     @Published var currentFlowState: FlowState = .onboarding
     @Published var currentUser: String = "" // <- nuevo
 
+    @Published var savedRecipes: [Recipe] = [] // Todas las recetas guardadas
     
     
     func completeOnboarding() {

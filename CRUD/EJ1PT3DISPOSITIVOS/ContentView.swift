@@ -19,13 +19,13 @@ struct ContentView: View {
             LoginPage()
                 .environmentObject(app)
         case .mainApp:
-            HomePage()
+            NativeTabViews()
                 .environmentObject(app)
         }
     }
 }
 
 #Preview {
-    ContentView()
+    NativeTabViews()
         .environmentObject(AppNavigation())
 }
